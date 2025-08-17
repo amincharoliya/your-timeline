@@ -1,0 +1,60 @@
+/**
+ * The following styles get applied inside the editor only.
+ *
+ * Replace them with your own styles or remove the file completely.
+ */
+// Block UI
+
+// Settings UI
+.your-block-color-palette-wrap {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.your-block-color-palette {
+	.components-color-palette__custom-color-button {
+		height: 24px !important;
+		width: 24px !important;
+		border-radius: 50%;
+	}
+
+	.components-color-palette__custom-color-text-wrapper,
+	.components-circular-option-picker {
+		display: none;
+	}
+}
+
+// Block Custom Controls
+.your-timeline-block {
+	&__item {
+		&:focus-within,
+		&:hover {
+			outline: 2px solid #0073aa;
+			border-radius: 8px;
+
+			.your-timeline-block__remove-button {
+				opacity: 1;
+				visibility: visible;
+			}
+		}
+	}
+
+	&__remove-button {
+		position: absolute;
+		left: 10px;
+		top: 50%;
+		transform: translateY(-50%);
+		background-color: #f2f2f2;
+		border-radius: 6px;
+		opacity: 0;
+		visibility: hidden;
+	}
+
+	&__add-button {
+		display: flex;
+		align-items: center;
+		border-radius: 6px;
+		margin: 0 auto;
+	}
+}

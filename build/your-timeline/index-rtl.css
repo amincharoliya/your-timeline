@@ -1,0 +1,124 @@
+/*!***********************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/your-timeline/blockStyles.scss ***!
+  \***********************************************************************************************************************************************************************************************************************************************************/
+.your-timeline-block__list {
+  display: none;
+}
+.your-timeline-block__list.has-points {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  position: relative;
+}
+.your-timeline-block__list:before {
+  content: "";
+  position: absolute;
+  right: 50%;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: #ffffff;
+  background: linear-gradient(0deg, rgb(255, 255, 255) 0%, rgb(204, 204, 204) 25%, rgb(204, 204, 204) 75%, rgb(255, 255, 255) 100%);
+}
+.your-timeline-block__item {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: flex-start;
+  padding: 1rem;
+  position: relative;
+  z-index: 1;
+}
+.your-timeline-block__item:nth-child(even) {
+  flex-flow: row-reverse nowrap;
+}
+.your-timeline-block__item:nth-child(even) .your-timeline-block__date p {
+  text-align: right;
+}
+.your-timeline-block__item:nth-child(even) .your-timeline-block__remove-button {
+  right: inherit;
+  left: 10px;
+}
+.your-timeline-block__date {
+  flex: 0 0 calc(50% - 20px - 1rem);
+}
+.your-timeline-block__date p {
+  font-weight: bold;
+  font-size: 1.3rem;
+  font-weight: 500;
+  text-align: left;
+  margin: 0.3rem 0;
+}
+.your-timeline-block__icon {
+  flex: 0 0 40px;
+  margin: 0 1rem;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #f2f2f2;
+  border: 1px solid #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.your-timeline-block__content {
+  flex: 1;
+  background-color: #f2f2f2;
+  padding: 1rem;
+  border-radius: 8px;
+}
+.your-timeline-block__title h2 {
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin: 0 0 0.8rem 0;
+}
+.your-timeline-block__description {
+  font-size: 1rem;
+  margin-top: 0.5rem;
+}
+/*!******************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/your-timeline/editor.scss ***!
+  \******************************************************************************************************************************************************************************************************************************************************/
+/**
+ * The following styles get applied inside the editor only.
+ *
+ * Replace them with your own styles or remove the file completely.
+ */
+.your-block-color-palette-wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.your-block-color-palette .components-color-palette__custom-color-button {
+  height: 24px !important;
+  width: 24px !important;
+  border-radius: 50%;
+}
+.your-block-color-palette .components-color-palette__custom-color-text-wrapper,
+.your-block-color-palette .components-circular-option-picker {
+  display: none;
+}
+
+.your-timeline-block__item:focus-within, .your-timeline-block__item:hover {
+  outline: 2px solid #0073aa;
+  border-radius: 8px;
+}
+.your-timeline-block__item:focus-within .your-timeline-block__remove-button, .your-timeline-block__item:hover .your-timeline-block__remove-button {
+  opacity: 1;
+  visibility: visible;
+}
+.your-timeline-block__remove-button {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: #f2f2f2;
+  border-radius: 6px;
+  opacity: 0;
+  visibility: hidden;
+}
+.your-timeline-block__add-button {
+  display: flex;
+  align-items: center;
+  border-radius: 6px;
+  margin: 0 auto;
+}
