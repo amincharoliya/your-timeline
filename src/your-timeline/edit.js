@@ -22,7 +22,6 @@ import { TextControl, Button, Icon } from "@wordpress/components";
  * @see https://www.npmjs.com/package/@wordpress/scripts#using-css
  */
 import "./editor.scss";
-import AddPoint from "./AddPoint";
 import { InspectorBlock } from "./InspectorBlock";
 
 /**
@@ -58,7 +57,7 @@ export default function Edit({ attributes, setAttributes }) {
 	return (
 		<div {...useBlockProps()}>
 			<InspectorBlock attributes={attributes} setAttributes={setAttributes} />
-			<div className="your-timeline-block">
+			<div className={`your-timeline-block ${attributes.orientation === 'vertical' ? attributes.layout + '-layout' : ''} `}>
 				<div
 					className={`your-timeline-block__list ${
 						attributes.points.length ? "has-points" : ""

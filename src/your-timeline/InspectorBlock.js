@@ -5,12 +5,15 @@ import { InspectorControls } from "@wordpress/block-editor";
 import {
 	PanelBody,
 	TextControl,
+	SelectControl,
 	ColorPalette,
 	ToggleControl,
 	TabPanel,
+	__experimentalToggleGroupControl as ToggleGroupControl,
+    __experimentalToggleGroupControlOption as ToggleGroupControlOption,
 } from "@wordpress/components";
 
-export const InspectorBlock = ({ attributes }) => (
+export const InspectorBlock = ({ attributes, setAttributes }) => (
 	<InspectorControls>
 		<TabPanel
 			className="my-block-tabs"
@@ -37,16 +40,33 @@ export const InspectorBlock = ({ attributes }) => (
 				if (tab.name === "timeline-settings") {
 					return (
 						<PanelBody>
-							<TextControl
-								label="Font"
-								value={attributes.font}
-								onChange={(font) => setAttributes({ font })}
+							<SelectControl
+								label="Orientation"
+								value={attributes.orientation}
+								onChange={(newOrientation) => setAttributes({ orientation: newOrientation })}
+								options={[
+									{ label: __("Vertical", "my-block"), value: "vertical" },
+									{ label: __("Horizontal", "my-block"), value: "horizontal" },
+								]}
 							/>
-							<ToggleControl
-								label="Animations"
-								checked={attributes.animations}
-								onChange={(animations) => setAttributes({ animations })}
-							/>
+
+							{attributes.orientation === "vertical" && (
+								<ToggleGroupControl
+									label={__("Timeline Layout", "my-block")}
+									value={attributes.layout}
+									isBlock
+									onChange={(value) => setAttributes({ layout: value })}
+								>
+									<ToggleGroupControlOption
+										value="single"
+										label={__("Single Side", "my-block")}
+									/>
+									<ToggleGroupControlOption
+										value="alternate"
+										label={__("Alternating", "my-block")}
+									/>
+								</ToggleGroupControl>
+							)}
 						</PanelBody>
 					);
 				}

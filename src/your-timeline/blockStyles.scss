@@ -34,18 +34,18 @@
 		padding: 1rem;
 		position: relative;
 		z-index: 1;
+	}
 
-		&:nth-child(even) {
-			flex-flow: row-reverse nowrap;
+	&.alternate-layout .your-timeline-block__item:nth-child(even) {
+		flex-flow: row-reverse nowrap;
 
-			.your-timeline-block__date p {
-				text-align: left;
-			}
+		.your-timeline-block__date p {
+			text-align: left;
+		}
 
-			.your-timeline-block__remove-button {
-				left: inherit;
-				right: 10px;
-			}
+		.your-timeline-block__remove-button {
+			left: inherit;
+			right: 10px;
 		}
 	}
 

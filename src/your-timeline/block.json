@@ -13,6 +13,10 @@
 			"type": "string",
 			"default": "vertical"
 		},
+		"layout": {
+			"type": "string",
+			"default": "alternate"
+		},
 		"points": {
 			"type": "array",
 			"default": [
@@ -54,17 +58,9 @@
 			"type": "string",
 			"default": "#FF3A86"
 		},
-		"font": {
-			"type": "string",
-			"default": "inherit"
-		},
 		"lineStyle": {
 			"type": "string",
 			"default": "solid"
-		},
-		"animations": {
-			"type": "boolean",
-			"default": true
 		},
 		"expandType": {
 			"type": "string",
