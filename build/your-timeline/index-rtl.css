@@ -28,13 +28,13 @@
   position: relative;
   z-index: 1;
 }
-.your-timeline-block__item:nth-child(even) {
+.your-timeline-block.single-layout.layout-side-left .your-timeline-block__item, .your-timeline-block.alternate-layout .your-timeline-block__item:nth-child(even) {
   flex-flow: row-reverse nowrap;
 }
-.your-timeline-block__item:nth-child(even) .your-timeline-block__date p {
+.your-timeline-block.single-layout.layout-side-left .your-timeline-block__item .your-timeline-block__date p, .your-timeline-block.alternate-layout .your-timeline-block__item:nth-child(even) .your-timeline-block__date p {
   text-align: right;
 }
-.your-timeline-block__item:nth-child(even) .your-timeline-block__remove-button {
+.your-timeline-block.single-layout.layout-side-left .your-timeline-block__item .your-timeline-block__remove-button, .your-timeline-block.alternate-layout .your-timeline-block__item:nth-child(even) .your-timeline-block__remove-button {
   right: inherit;
   left: 10px;
 }

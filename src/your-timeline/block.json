@@ -17,6 +17,10 @@
 			"type": "string",
 			"default": "alternate"
 		},
+		"layoutSide": {
+			"type": "string",
+			"default": "right"
+		},
 		"points": {
 			"type": "array",
 			"default": [

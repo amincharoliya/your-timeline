@@ -13,7 +13,7 @@ import { __ } from "@wordpress/i18n";
  */
 import { useBlockProps, RichText } from "@wordpress/block-editor";
 
-import { TextControl, Button, Icon } from "@wordpress/components";
+import { Button } from "@wordpress/components";
 
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
@@ -54,10 +54,19 @@ export default function Edit({ attributes, setAttributes }) {
 		setAttributes({ points });
 	};
 
+	const LayoutSideOption =
+		attributes.layoutSide === "left" ? "layout-side-left" : "layout-side-right";
+
 	return (
 		<div {...useBlockProps()}>
 			<InspectorBlock attributes={attributes} setAttributes={setAttributes} />
-			<div className={`your-timeline-block ${attributes.orientation === 'vertical' ? attributes.layout + '-layout' : ''} `}>
+			<div
+				className={`your-timeline-block ${
+					attributes.orientation === "vertical"
+						? attributes.layout + "-layout"
+						: ""
+				} ${LayoutSideOption}`}
+			>
 				<div
 					className={`your-timeline-block__list ${
 						attributes.points.length ? "has-points" : ""

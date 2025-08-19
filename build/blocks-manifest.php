@@ -18,6 +18,14 @@ return array(
 				'type' => 'string',
 				'default' => 'vertical'
 			),
+			'layout' => array(
+				'type' => 'string',
+				'default' => 'alternate'
+			),
+			'layoutSide' => array(
+				'type' => 'string',
+				'default' => 'right'
+			),
 			'points' => array(
 				'type' => 'array',
 				'default' => array(
@@ -59,17 +67,9 @@ return array(
 				'type' => 'string',
 				'default' => '#FF3A86'
 			),
-			'font' => array(
-				'type' => 'string',
-				'default' => 'inherit'
-			),
 			'lineStyle' => array(
 				'type' => 'string',
 				'default' => 'solid'
-			),
-			'animations' => array(
-				'type' => 'boolean',
-				'default' => true
 			),
 			'expandType' => array(
 				'type' => 'string',

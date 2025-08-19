@@ -36,6 +36,7 @@
 		z-index: 1;
 	}
 
+	&.single-layout.layout-side-left .your-timeline-block__item,
 	&.alternate-layout .your-timeline-block__item:nth-child(even) {
 		flex-flow: row-reverse nowrap;
 

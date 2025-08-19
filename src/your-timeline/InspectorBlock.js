@@ -10,7 +10,7 @@ import {
 	ToggleControl,
 	TabPanel,
 	__experimentalToggleGroupControl as ToggleGroupControl,
-    __experimentalToggleGroupControlOption as ToggleGroupControlOption,
+	__experimentalToggleGroupControlOption as ToggleGroupControlOption,
 } from "@wordpress/components";
 
 export const InspectorBlock = ({ attributes, setAttributes }) => (
@@ -43,7 +43,9 @@ export const InspectorBlock = ({ attributes, setAttributes }) => (
 							<SelectControl
 								label="Orientation"
 								value={attributes.orientation}
-								onChange={(newOrientation) => setAttributes({ orientation: newOrientation })}
+								onChange={(newOrientation) =>
+									setAttributes({ orientation: newOrientation })
+								}
 								options={[
 									{ label: __("Vertical", "my-block"), value: "vertical" },
 									{ label: __("Horizontal", "my-block"), value: "horizontal" },
@@ -64,6 +66,24 @@ export const InspectorBlock = ({ attributes, setAttributes }) => (
 									<ToggleGroupControlOption
 										value="alternate"
 										label={__("Alternating", "my-block")}
+									/>
+								</ToggleGroupControl>
+							)}
+
+							{attributes.layout === "single" && (
+								<ToggleGroupControl
+									label={__("Timeline Layout Side", "my-block")}
+									value={attributes.layoutSide}
+									isBlock
+									onChange={(value) => setAttributes({ layoutSide: value })}
+								>
+									<ToggleGroupControlOption
+										value="left"
+										label={__("Left Side", "my-block")}
+									/>
+									<ToggleGroupControlOption
+										value="right"
+										label={__("Right Side", "my-block")}
 									/>
 								</ToggleGroupControl>
 							)}
