@@ -74,6 +74,87 @@
   font-size: 1rem;
   margin-top: 0.5rem;
 }
+.your-timeline-block.horizontal-layout .your-timeline-block__slider-container {
+  display: flex;
+  align-items: center;
+}
+.your-timeline-block.horizontal-layout .your-timeline-block__nav-button {
+  flex-shrink: 0;
+}
+.your-timeline-block.horizontal-layout .your-timeline-block__slider {
+  overflow: hidden;
+  width: 100%;
+  position: relative;
+  min-height: 200px;
+  transition: height 0.3s ease;
+}
+.your-timeline-block.horizontal-layout .your-timeline-block__slide {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  transition: 0.3s;
+  box-sizing: border-box;
+}
+.your-timeline-block.horizontal-layout .your-timeline-block__list {
+  display: flex;
+  padding: 2px;
+}
+.your-timeline-block.horizontal-layout .your-timeline-block__list::before {
+  display: none;
+}
+.your-timeline-block.horizontal-layout .your-timeline-block__item {
+  flex-direction: column;
+  align-items: center;
+  flex: 1 1 0%;
+  padding: 15px;
+  position: relative;
+}
+.your-timeline-block.horizontal-layout .your-timeline-block__date {
+  flex: none;
+  align-items: center;
+}
+.your-timeline-block.horizontal-layout .your-timeline-block__icon-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px 0 20px;
+  width: 100%;
+}
+.your-timeline-block.horizontal-layout .your-timeline-block__icon-wrap:before {
+  content: "";
+  height: 2px;
+  background-color: #ccc;
+  position: absolute;
+  top: 50%;
+  left: -15px;
+  right: -15px;
+  transform: translateY(-50%);
+}
+.your-timeline-block.horizontal-layout .your-timeline-block__icon {
+  width: 40px;
+  height: 40px;
+  position: relative;
+}
+.your-timeline-block.horizontal-layout .your-timeline-block__remove-button {
+  top: 15px;
+  left: 5px;
+  border-radius: 5px;
+}
+.your-timeline-block.horizontal-layout .your-timeline-block__controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 15px;
+}
+.your-timeline-block.horizontal-layout .your-timeline-block__add-button {
+  margin-left: auto;
+}
+.your-timeline-block.horizontal-layout .your-timeline-block__pagination {
+  font-size: "14px";
+  color: "#666";
+}
 /*!******************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/your-timeline/editor.scss ***!
   \******************************************************************************************************************************************************************************************************************************************************/

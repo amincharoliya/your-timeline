@@ -2,6 +2,217 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./src/your-timeline/HorizontalTimeline.js":
+/*!*************************************************!*\
+  !*** ./src/your-timeline/HorizontalTimeline.js ***!
+  \*************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__);
+/**
+ * Horizontal Timeline Component with Slider
+ */
+
+
+
+
+
+
+/**
+ * Horizontal Timeline Component with Slider
+ *
+ * @param {Object} props - Component props
+ * @param {Object} props.attributes - Block attributes
+ * @param {Function} props.updatePoint - Function to update a timeline point
+ * @param {Function} props.removePoint - Function to remove a timeline point
+ * @param {Function} props.AddPoint - Function to add a new timeline point
+ * @returns {JSX.Element} Horizontal timeline component with slider
+ */
+
+const HorizontalTimeline = ({
+  attributes,
+  updatePoint,
+  removePoint,
+  AddPoint
+}) => {
+  const [currentSlide, setCurrentSlide] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.useState)(0);
+  const sliderRef = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.useRef)(null);
+  const pointsPerSlide = 2;
+  const points = attributes.points || [];
+  const totalSlides = Math.max(1, Math.ceil(points.length / pointsPerSlide));
+
+  // Adjust slider height when currentSlide changes
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.useEffect)(() => {
+    if (sliderRef.current) {
+      const activeSlide = sliderRef.current.querySelector(".your-timeline-block__slide[style*='translateX(0px)']");
+      if (activeSlide) {
+        sliderRef.current.style.height = `${activeSlide.offsetHeight}px`;
+      }
+    }
+  }, [currentSlide, points]);
+  const nextSlide = () => {
+    if (totalSlides > 1) {
+      setCurrentSlide(prev => (prev + 1) % totalSlides);
+    }
+  };
+  const prevSlide = () => {
+    if (totalSlides > 1) {
+      setCurrentSlide(prev => (prev - 1 + totalSlides) % totalSlides);
+    }
+  };
+
+  // Reset slide if it's out of bounds after point removal
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.useEffect)(() => {
+    if (currentSlide >= totalSlides && totalSlides > 0) {
+      setCurrentSlide(Math.max(0, totalSlides - 1));
+    }
+  }, [totalSlides, currentSlide]);
+
+  // If no points, show add button
+  if (points.length === 0) {
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+      className: "your-timeline-block horizontal-layout",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+        className: "your-timeline-block__empty",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {
+          children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("No timeline points yet. Add your first point!", "my-block")
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
+          className: "your-timeline-block__add-button",
+          variant: "primary",
+          icon: "plus",
+          iconSize: 14,
+          onClick: () => AddPoint(),
+          text: "Add Point"
+        })]
+      })
+    });
+  }
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+    className: "your-timeline-block horizontal-layout",
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+      className: "your-timeline-block__slider-container",
+      children: [totalSlides > 1 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
+        className: "your-timeline-block__nav-button your-timeline-block__nav-button--prev",
+        icon: "arrow-left-alt2",
+        onClick: prevSlide,
+        disabled: currentSlide === 0
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+        className: "your-timeline-block__slider",
+        ref: sliderRef,
+        children: Array.from({
+          length: totalSlides
+        }).map((_, slideIndex) => {
+          const slidePoints = points.slice(slideIndex * pointsPerSlide, (slideIndex + 1) * pointsPerSlide);
+          const isActive = slideIndex === currentSlide;
+          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+            className: "your-timeline-block__slide",
+            style: {
+              opacity: isActive ? 1 : 0,
+              transform: isActive ? "translateX(0)" : slideIndex > currentSlide ? "translateX(100%)" : "translateX(-100%)"
+            },
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+              className: "your-timeline-block__list horizontal-list",
+              children: slidePoints.map((point, pointIndex) => {
+                const actualIndex = slideIndex * pointsPerSlide + pointIndex;
+                return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+                  className: "your-timeline-block__item",
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+                    className: "your-timeline-block__date",
+                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText, {
+                      tagName: "p",
+                      placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Enter Date", "my-block"),
+                      value: point.date,
+                      onChange: value => updatePoint(actualIndex, {
+                        ...point,
+                        date: value
+                      })
+                    })
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+                    className: "your-timeline-block__icon-wrap",
+                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+                      className: "your-timeline-block__icon"
+                    })
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+                    className: "your-timeline-block__content",
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+                      className: "your-timeline-block__title",
+                      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText, {
+                        tagName: "h3",
+                        value: point.title,
+                        placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Enter Title", "my-block"),
+                        onChange: value => updatePoint(actualIndex, {
+                          ...point,
+                          title: value
+                        })
+                      })
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+                      className: "your-timeline-block__description",
+                      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText, {
+                        tagName: "div",
+                        value: point.description,
+                        placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Enter Description", "my-block"),
+                        onChange: value => updatePoint(actualIndex, {
+                          ...point,
+                          description: value
+                        })
+                      })
+                    })]
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
+                    className: "your-timeline-block__remove-button",
+                    icon: "trash",
+                    onClick: () => removePoint(actualIndex),
+                    size: "small"
+                  })]
+                }, actualIndex);
+              })
+            })
+          }, slideIndex);
+        })
+      }), totalSlides > 1 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
+        className: "your-timeline-block__nav-button your-timeline-block__nav-button--next",
+        icon: "arrow-right-alt2",
+        onClick: nextSlide,
+        disabled: currentSlide === totalSlides - 1
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+      className: "your-timeline-block__controls",
+      children: [totalSlides > 1 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+        className: "your-timeline-block__pagination",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("span", {
+          style: {
+            fontSize: "14px",
+            color: "#666"
+          },
+          children: [currentSlide + 1, " / ", totalSlides]
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
+        className: "your-timeline-block__add-button",
+        variant: "primary",
+        icon: "plus",
+        iconSize: 14,
+        onClick: () => AddPoint(),
+        text: "Add Point"
+      })]
+    })]
+  });
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (HorizontalTimeline);
+
+/***/ }),
+
 /***/ "./src/your-timeline/InspectorBlock.js":
 /*!*********************************************!*\
   !*** ./src/your-timeline/InspectorBlock.js ***!
@@ -144,6 +355,119 @@ const InspectorBlock = ({
 
 /***/ }),
 
+/***/ "./src/your-timeline/VerticalTimeline.js":
+/*!***********************************************!*\
+  !*** ./src/your-timeline/VerticalTimeline.js ***!
+  \***********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__);
+/**
+ * Vertical Timeline Component
+ * 
+ * Displays timeline items in a vertical layout with left/right alternating positions
+ */
+
+
+
+
+
+/**
+ * Vertical Timeline Component
+ * 
+ * @param {Object} props - Component props
+ * @param {Object} props.attributes - Block attributes
+ * @param {Function} props.updatePoint - Function to update a timeline point
+ * @param {Function} props.removePoint - Function to remove a timeline point
+ * @param {Function} props.AddPoint - Function to add a new timeline point
+ * @returns {JSX.Element} Vertical timeline component
+ */
+
+const VerticalTimeline = ({
+  attributes,
+  updatePoint,
+  removePoint,
+  AddPoint
+}) => {
+  const LayoutSideOption = attributes.layoutSide === "left" ? "layout-side-left" : "layout-side-right";
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+    className: `your-timeline-block ${attributes.orientation === 'vertical' ? attributes.layout + '-layout' : ''} ${LayoutSideOption}`,
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+      className: `your-timeline-block__list ${attributes.points.length ? "has-points" : ""}`,
+      children: attributes.points.map((point, index) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+        className: "your-timeline-block__item",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+          className: "your-timeline-block__date",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText, {
+            tagName: "p",
+            placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Enter Date", "my-block"),
+            value: point.date,
+            onChange: value => updatePoint(index, {
+              ...point,
+              date: value
+            })
+          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+          className: "your-timeline-block__icon"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+          className: "your-timeline-block__content",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+            className: "your-timeline-block__title",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText, {
+              tagName: "h2",
+              value: point.title,
+              placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Enter Title", "my-block"),
+              onChange: value => updatePoint(index, {
+                ...point,
+                title: value
+              })
+            })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+            className: "your-timeline-block__description",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText, {
+              tagName: "div",
+              value: point.description,
+              placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Enter Description", "my-block"),
+              onChange: value => updatePoint(index, {
+                ...point,
+                description: value
+              })
+            })
+          })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
+          className: "your-timeline-block__remove-button",
+          icon: "trash",
+          onClick: () => removePoint(index),
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
+            children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Remove Timeline", "my-block")
+          })
+        })]
+      }, index))
+    }), attributes.points.length && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
+      className: "your-timeline-block__add-button",
+      variant: "primary",
+      icon: "plus",
+      iconSize: 14,
+      onClick: () => AddPoint(),
+      text: "Add Point"
+    })]
+  });
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (VerticalTimeline);
+
+/***/ }),
+
 /***/ "./src/your-timeline/block.json":
 /*!**************************************!*\
   !*** ./src/your-timeline/block.json ***!
@@ -207,8 +531,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./editor.scss */ "./src/your-timeline/editor.scss");
 /* harmony import */ var _InspectorBlock__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./InspectorBlock */ "./src/your-timeline/InspectorBlock.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _VerticalTimeline__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./VerticalTimeline */ "./src/your-timeline/VerticalTimeline.js");
+/* harmony import */ var _HorizontalTimeline__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./HorizontalTimeline */ "./src/your-timeline/HorizontalTimeline.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__);
 /**
  * Retrieves the translation of text.
  *
@@ -231,6 +557,8 @@ __webpack_require__.r(__webpack_exports__);
  *
  * @see https://www.npmjs.com/package/@wordpress/scripts#using-css
  */
+
+
 
 
 
@@ -271,73 +599,21 @@ function Edit({
       points
     });
   };
-  const LayoutSideOption = attributes.layoutSide === "left" ? "layout-side-left" : "layout-side-right";
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
     ...(0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps)(),
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_InspectorBlock__WEBPACK_IMPORTED_MODULE_4__.InspectorBlock, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_InspectorBlock__WEBPACK_IMPORTED_MODULE_4__.InspectorBlock, {
       attributes: attributes,
       setAttributes: setAttributes
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
-      className: `your-timeline-block ${attributes.orientation === "vertical" ? attributes.layout + "-layout" : ""} ${LayoutSideOption}`,
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
-        className: `your-timeline-block__list ${attributes.points.length ? "has-points" : ""}`,
-        children: attributes.points.map((point, index) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
-          className: "your-timeline-block__item",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
-            className: "your-timeline-block__date",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText, {
-              tagName: "p",
-              placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Enter Date", "my-block"),
-              value: point.date,
-              onChange: value => updatePoint(index, {
-                ...point,
-                date: value
-              })
-            })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
-            className: "your-timeline-block__icon"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
-            className: "your-timeline-block__content",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
-              className: "your-timeline-block__title",
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText, {
-                tagName: "h2",
-                value: point.title,
-                placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Enter Title", "my-block"),
-                onChange: value => updatePoint(index, {
-                  ...point,
-                  title: value
-                })
-              })
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
-              className: "your-timeline-block__description",
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText, {
-                tagName: "div",
-                value: point.description,
-                placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Enter Description", "my-block"),
-                onChange: value => updatePoint(index, {
-                  ...point,
-                  description: value
-                })
-              })
-            })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
-            className: "your-timeline-block__remove-button",
-            icon: "trash",
-            onClick: () => removePoint(index),
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
-              children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Remove Timeline", "my-block")
-            })
-          })]
-        }, index))
-      }), attributes.points.length && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
-        className: "your-timeline-block__add-button",
-        variant: "primary",
-        icon: "plus",
-        iconSize: 14,
-        onClick: () => AddPoint(),
-        text: "Add Point"
-      })]
+    }), attributes.orientation === 'horizontal' ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_HorizontalTimeline__WEBPACK_IMPORTED_MODULE_6__["default"], {
+      attributes: attributes,
+      updatePoint: updatePoint,
+      removePoint: removePoint,
+      AddPoint: AddPoint
+    }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_VerticalTimeline__WEBPACK_IMPORTED_MODULE_5__["default"], {
+      attributes: attributes,
+      updatePoint: updatePoint,
+      removePoint: removePoint,
+      AddPoint: AddPoint
     })]
   });
 }
@@ -426,6 +702,16 @@ module.exports = window["wp"]["blocks"];
 /***/ ((module) => {
 
 module.exports = window["wp"]["components"];
+
+/***/ }),
+
+/***/ "@wordpress/element":
+/*!*********************************!*\
+  !*** external ["wp","element"] ***!
+  \*********************************/
+/***/ ((module) => {
+
+module.exports = window["wp"]["element"];
 
 /***/ }),
 
