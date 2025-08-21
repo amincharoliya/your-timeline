@@ -144,7 +144,7 @@ const HorizontalTimeline = ({
 												<div className="your-timeline-block__content">
 													<div className="your-timeline-block__title">
 														<RichText
-															tagName="h3"
+															tagName="h2"
 															value={point.title}
 															placeholder={__("Enter Title", "my-block")}
 															onChange={(value) =>

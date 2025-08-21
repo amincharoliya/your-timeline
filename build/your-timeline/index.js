@@ -150,7 +150,7 @@ const HorizontalTimeline = ({
                     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
                       className: "your-timeline-block__title",
                       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText, {
-                        tagName: "h3",
+                        tagName: "h2",
                         value: point.title,
                         placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Enter Title", "my-block"),
                         onChange: value => updatePoint(actualIndex, {
@@ -474,7 +474,7 @@ const VerticalTimeline = ({
   \**************************************/
 /***/ ((module) => {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"your-blocks/your-timeline","version":"0.1.0","title":"Your Timeline","category":"widgets","icon":"smiley","description":"Create Beautiful and interactive timelines.","example":{},"attributes":{"orientation":{"type":"string","default":"vertical"},"layout":{"type":"string","default":"alternate"},"layoutSide":{"type":"string","default":"right"},"points":{"type":"array","default":[{"id":1,"title":"Early 20th Century– ~50 years","description":"Widespread use of vaccines, better medicine, and reduced infant mortality raised life expectancy significantly.","date":"1900"},{"id":2,"title":"Post-WWII Modernization – ~60 years","description":"Antibiotics, public health systems, clean water, and better nutrition accelerated gains.","date":"1950"},{"id":3,"title":"Early 21st Century – ~67 years","description":"Most countries benefited from modern medicine. Some developed nations saw averages >75 years.","date":"2000"},{"id":4,"title":"Today – ~73 years","description":"High-income countries: 80–85 years. Low-income countries: 60–65 years. Major threats include chronic diseases, lifestyle illnesses, and pandemics like COVID-19.","date":"2020"}]},"TimelineLabelColor":{"type":"string","default":"#3A86FF"},"headingColor":{"type":"string","default":"#3A86FF"},"DescriptionColor":{"type":"string","default":"#FF3A86"},"lineStyle":{"type":"string","default":"solid"},"expandType":{"type":"string","default":"inline"}},"supports":{"html":false},"textdomain":"your-timeline","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","viewScript":"file:./view.js"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"your-blocks/your-timeline","version":"0.1.0","title":"Your Timeline","category":"widgets","icon":"smiley","description":"Create Beautiful and interactive timelines.","example":{},"attributes":{"orientation":{"type":"string","default":"vertical"},"layout":{"type":"string","default":"alternate"},"layoutSide":{"type":"string","default":"right"},"points":{"type":"array","default":[{"id":1,"title":"Early 20th Century– ~50 years","description":"Widespread use of vaccines, better medicine, and reduced infant mortality raised life expectancy significantly.","date":"1900"},{"id":2,"title":"Post-WWII Modernization – ~60 years","description":"Antibiotics, public health systems, clean water, and better nutrition accelerated gains.","date":"1950"},{"id":3,"title":"Early 21st Century – ~67 years","description":"Most countries benefited from modern medicine. Some developed nations saw averages >75 years.","date":"2000"},{"id":4,"title":"Today – ~73 years","description":"High-income countries: 80–85 years. Low-income countries: 60–65 years. Major threats include chronic diseases, lifestyle illnesses, and pandemics like COVID-19.","date":"2020"}]},"TimelineLabelColor":{"type":"string","default":"inherit"},"headingColor":{"type":"string","default":"inherit"},"DescriptionColor":{"type":"string","default":"inherit"}},"supports":{"html":false},"textdomain":"your-timeline","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","viewScript":"file:./view.js"}');
 
 /***/ }),
 
@@ -523,32 +523,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ Edit)
 /* harmony export */ });
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
-/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./editor.scss */ "./src/your-timeline/editor.scss");
-/* harmony import */ var _InspectorBlock__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./InspectorBlock */ "./src/your-timeline/InspectorBlock.js");
-/* harmony import */ var _VerticalTimeline__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./VerticalTimeline */ "./src/your-timeline/VerticalTimeline.js");
-/* harmony import */ var _HorizontalTimeline__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./HorizontalTimeline */ "./src/your-timeline/HorizontalTimeline.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__);
-/**
- * Retrieves the translation of text.
- *
- * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-i18n/
- */
-
-
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./editor.scss */ "./src/your-timeline/editor.scss");
+/* harmony import */ var _InspectorBlock__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./InspectorBlock */ "./src/your-timeline/InspectorBlock.js");
+/* harmony import */ var _VerticalTimeline__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./VerticalTimeline */ "./src/your-timeline/VerticalTimeline.js");
+/* harmony import */ var _HorizontalTimeline__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./HorizontalTimeline */ "./src/your-timeline/HorizontalTimeline.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__);
 /**
  * React hook that is used to mark the block wrapper element.
  * It provides all the necessary props like the class name.
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockprops
  */
-
 
 
 /**
@@ -575,6 +563,18 @@ function Edit({
   attributes,
   setAttributes
 }) {
+  const {
+    TimelineLabelColor,
+    headingColor,
+    DescriptionColor
+  } = attributes;
+  const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.useBlockProps)({
+    style: {
+      "--your-timeline-primary-color": TimelineLabelColor,
+      "--your-timeline-heading-color": headingColor,
+      "--your-timeline-description-color": DescriptionColor
+    }
+  });
   const AddPoint = () => {
     const newPoint = {
       date: "",
@@ -599,17 +599,17 @@ function Edit({
       points
     });
   };
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
-    ...(0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps)(),
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_InspectorBlock__WEBPACK_IMPORTED_MODULE_4__.InspectorBlock, {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+    ...blockProps,
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_InspectorBlock__WEBPACK_IMPORTED_MODULE_2__.InspectorBlock, {
       attributes: attributes,
       setAttributes: setAttributes
-    }), attributes.orientation === 'horizontal' ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_HorizontalTimeline__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    }), attributes.orientation === "horizontal" ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_HorizontalTimeline__WEBPACK_IMPORTED_MODULE_4__["default"], {
       attributes: attributes,
       updatePoint: updatePoint,
       removePoint: removePoint,
       AddPoint: AddPoint
-    }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_VerticalTimeline__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_VerticalTimeline__WEBPACK_IMPORTED_MODULE_3__["default"], {
       attributes: attributes,
       updatePoint: updatePoint,
       removePoint: removePoint,

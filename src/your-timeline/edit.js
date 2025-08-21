@@ -1,19 +1,10 @@
 /**
- * Retrieves the translation of text.
- *
- * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-i18n/
- */
-import { __ } from "@wordpress/i18n";
-
-/**
  * React hook that is used to mark the block wrapper element.
  * It provides all the necessary props like the class name.
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockprops
  */
-import { useBlockProps, RichText } from "@wordpress/block-editor";
-
-import { Button } from "@wordpress/components";
+import { useBlockProps } from "@wordpress/block-editor";
 
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
@@ -26,7 +17,6 @@ import { InspectorBlock } from "./InspectorBlock";
 import VerticalTimeline from "./VerticalTimeline";
 import HorizontalTimeline from "./HorizontalTimeline";
 
-
 /**
  * The edit function describes the structure of your block in the context of the
  * editor. This represents what the editor will render when the block is used.
@@ -36,6 +26,15 @@ import HorizontalTimeline from "./HorizontalTimeline";
  * @return {Element} Element to render.
  */
 export default function Edit({ attributes, setAttributes }) {
+	const { TimelineLabelColor, headingColor, DescriptionColor } = attributes;
+
+	const blockProps = useBlockProps({
+		style: {
+			"--your-timeline-primary-color": TimelineLabelColor,
+			"--your-timeline-heading-color": headingColor,
+			"--your-timeline-description-color": DescriptionColor,
+		},
+	});
 	const AddPoint = () => {
 		const newPoint = {
 			date: "",
@@ -58,17 +57,17 @@ export default function Edit({ attributes, setAttributes }) {
 	};
 
 	return (
-		<div {...useBlockProps()}>
+		<div {...blockProps}>
 			<InspectorBlock attributes={attributes} setAttributes={setAttributes} />
-			{attributes.orientation === 'horizontal' ? (
-				<HorizontalTimeline 
+			{attributes.orientation === "horizontal" ? (
+				<HorizontalTimeline
 					attributes={attributes}
 					updatePoint={updatePoint}
 					removePoint={removePoint}
 					AddPoint={AddPoint}
 				/>
 			) : (
-				<VerticalTimeline 
+				<VerticalTimeline
 					attributes={attributes}
 					updatePoint={updatePoint}
 					removePoint={removePoint}

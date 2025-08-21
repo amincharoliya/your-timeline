@@ -57,23 +57,15 @@ return array(
 			),
 			'TimelineLabelColor' => array(
 				'type' => 'string',
-				'default' => '#3A86FF'
+				'default' => 'inherit'
 			),
 			'headingColor' => array(
 				'type' => 'string',
-				'default' => '#3A86FF'
+				'default' => 'inherit'
 			),
 			'DescriptionColor' => array(
 				'type' => 'string',
-				'default' => '#FF3A86'
-			),
-			'lineStyle' => array(
-				'type' => 'string',
-				'default' => 'solid'
-			),
-			'expandType' => array(
-				'type' => 'string',
-				'default' => 'inline'
+				'default' => 'inherit'
 			)
 		),
 		'supports' => array(

@@ -42,6 +42,7 @@
   flex: 0 0 calc(50% - 20px - 1rem);
 }
 .your-timeline-block__date p {
+  color: var(--your-timeline-primary-color);
   font-weight: bold;
   font-size: 1.3rem;
   font-weight: 500;
@@ -66,11 +67,13 @@
   border-radius: 8px;
 }
 .your-timeline-block__title h2 {
+  color: var(--your-timeline-heading-color);
   font-size: 1.2rem;
   font-weight: 500;
   margin: 0 0 0.8rem 0;
 }
 .your-timeline-block__description {
+  color: var(--your-timeline-description-color);
   font-size: 1rem;
   margin-top: 0.5rem;
 }

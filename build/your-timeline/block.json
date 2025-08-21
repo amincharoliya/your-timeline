@@ -52,23 +52,15 @@
     },
     "TimelineLabelColor": {
       "type": "string",
-      "default": "#3A86FF"
+      "default": "inherit"
     },
     "headingColor": {
       "type": "string",
-      "default": "#3A86FF"
+      "default": "inherit"
     },
     "DescriptionColor": {
       "type": "string",
-      "default": "#FF3A86"
-    },
-    "lineStyle": {
-      "type": "string",
-      "default": "solid"
-    },
-    "expandType": {
-      "type": "string",
-      "default": "inline"
+      "default": "inherit"
     }
   },
   "supports": {
