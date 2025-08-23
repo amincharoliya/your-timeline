@@ -2,22 +2,20 @@
  * Vertical Timeline Component
  *
  * Displays timeline items in a vertical layout with left/right alternating positions
- */
-
-import { __ } from "@wordpress/i18n";
-import { RichText } from "@wordpress/block-editor";
-import { Button } from "@wordpress/components";
-
-/**
- * Vertical Timeline Component
  *
  * @param {Object} props - Component props
  * @param {Object} props.attributes - Block attributes
  * @param {Function} props.updatePoint - Function to update a timeline point
  * @param {Function} props.removePoint - Function to remove a timeline point
  * @param {Function} props.AddPoint - Function to add a new timeline point
+ *
  * @returns {JSX.Element} Vertical timeline component
  */
+
+import { __ } from "@wordpress/i18n";
+import { RichText } from "@wordpress/block-editor";
+import { Button } from "@wordpress/components";
+
 const VerticalTimeline = ({
 	attributes,
 	updatePoint,
@@ -49,6 +47,7 @@ const VerticalTimeline = ({
 								onChange={(value) =>
 									updatePoint(index, { ...point, date: value })
 								}
+								allowedFormats={[]}
 							/>
 						</div>
 						<div className="your-timeline-block__icon"></div>
@@ -86,7 +85,7 @@ const VerticalTimeline = ({
 					</div>
 				))}
 			</div>
-			{attributes.points.length && (
+			{attributes.points.length > 0 && (
 				<Button
 					className="your-timeline-block__add-button"
 					variant="primary"

@@ -1,5 +1,15 @@
 /**
  * Horizontal Timeline Component with Slider
+ *
+ * @component
+ *
+ * @param {Object} props - Component props
+ * @param {Object} props.attributes - Block attributes
+ * @param {Function} props.updatePoint - Function to update a timeline point
+ * @param {Function} props.removePoint - Function to remove a timeline point
+ * @param {Function} props.AddPoint - Function to add a new timeline point
+ *
+ * @returns {JSX.Element} Horizontal timeline component with slider
  */
 
 import { __ } from "@wordpress/i18n";
@@ -7,16 +17,6 @@ import { RichText } from "@wordpress/block-editor";
 import { Button } from "@wordpress/components";
 import { useState, useEffect, useRef } from "@wordpress/element";
 
-/**
- * Horizontal Timeline Component with Slider
- *
- * @param {Object} props - Component props
- * @param {Object} props.attributes - Block attributes
- * @param {Function} props.updatePoint - Function to update a timeline point
- * @param {Function} props.removePoint - Function to remove a timeline point
- * @param {Function} props.AddPoint - Function to add a new timeline point
- * @returns {JSX.Element} Horizontal timeline component with slider
- */
 const HorizontalTimeline = ({
 	attributes,
 	updatePoint,
@@ -34,7 +34,7 @@ const HorizontalTimeline = ({
 	useEffect(() => {
 		if (sliderRef.current) {
 			const activeSlide = sliderRef.current.querySelector(
-				".your-timeline-block__slide[style*='translateX(0px)']",
+				".your-timeline-block__slide.is-active",
 			);
 			if (activeSlide) {
 				sliderRef.current.style.height = `${activeSlide.offsetHeight}px`;
@@ -87,6 +87,7 @@ const HorizontalTimeline = ({
 			<div className="your-timeline-block__slider-container">
 				{totalSlides > 1 && (
 					<Button
+						aria-label={__("Previous timeline", "my-block")}
 						className="your-timeline-block__nav-button your-timeline-block__nav-button--prev"
 						icon="arrow-left-alt2"
 						onClick={prevSlide}
@@ -106,7 +107,9 @@ const HorizontalTimeline = ({
 						return (
 							<div
 								key={slideIndex}
-								className="your-timeline-block__slide"
+								className={`your-timeline-block__slide ${
+									isActive ? "is-active" : ""
+								}`}
 								style={{
 									opacity: isActive ? 1 : 0,
 									transform: isActive
@@ -136,6 +139,7 @@ const HorizontalTimeline = ({
 																date: value,
 															})
 														}
+														allowedFormats={[]}
 													/>
 												</div>
 												<div className="your-timeline-block__icon-wrap">
@@ -170,6 +174,7 @@ const HorizontalTimeline = ({
 													</div>
 												</div>
 												<Button
+													aria-label={__("Remove timeline point", "my-block")}
 													className="your-timeline-block__remove-button"
 													icon="trash"
 													onClick={() => removePoint(actualIndex)}
@@ -186,6 +191,7 @@ const HorizontalTimeline = ({
 
 				{totalSlides > 1 && (
 					<Button
+						aria-label={__("Next Timeline", "my-block")}
 						className="your-timeline-block__nav-button your-timeline-block__nav-button--next"
 						icon="arrow-right-alt2"
 						onClick={nextSlide}

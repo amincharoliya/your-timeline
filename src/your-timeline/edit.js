@@ -1,32 +1,14 @@
-/**
- * React hook that is used to mark the block wrapper element.
- * It provides all the necessary props like the class name.
- *
- * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockprops
- */
 import { useBlockProps } from "@wordpress/block-editor";
+import { useCallback } from "@wordpress/element";
 
-/**
- * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
- * Those files can contain any CSS code that gets applied to the editor.
- *
- * @see https://www.npmjs.com/package/@wordpress/scripts#using-css
- */
 import "./editor.scss";
 import { InspectorBlock } from "./InspectorBlock";
-import VerticalTimeline from "./VerticalTimeline";
-import HorizontalTimeline from "./HorizontalTimeline";
+import VerticalTimeline from "./components/VerticalTimeline";
+import HorizontalTimeline from "./components/HorizontalTimeline";
 
-/**
- * The edit function describes the structure of your block in the context of the
- * editor. This represents what the editor will render when the block is used.
- *
- * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-edit-save/#edit
- *
- * @return {Element} Element to render.
- */
 export default function Edit({ attributes, setAttributes }) {
-	const { TimelineLabelColor, headingColor, DescriptionColor } = attributes;
+	const { TimelineLabelColor, headingColor, DescriptionColor, orientation } =
+		attributes;
 
 	const blockProps = useBlockProps({
 		style: {
@@ -35,43 +17,51 @@ export default function Edit({ attributes, setAttributes }) {
 			"--your-timeline-description-color": DescriptionColor,
 		},
 	});
-	const AddPoint = () => {
-		const newPoint = {
-			date: "",
-			title: "",
-			description: "",
-		};
-		setAttributes({ points: [...attributes.points, newPoint] });
-	};
 
-	const updatePoint = (index, newPoint) => {
-		const points = [...attributes.points];
-		points[index] = newPoint;
-		setAttributes({ points });
-	};
+	const addPoint = useCallback(() => {
+		setAttributes((prev) => ({
+			points: [...prev.points, { date: "", title: "", description: "" }],
+		}));
+	}, [setAttributes]);
 
-	const removePoint = (index) => {
-		const points = [...attributes.points];
-		points.splice(index, 1);
-		setAttributes({ points });
-	};
+	const updatePoint = useCallback(
+		(index, newPoint) => {
+			setAttributes((prev) => {
+				const points = [...prev.points];
+				points[index] = newPoint;
+				return { points };
+			});
+		},
+		[setAttributes],
+	);
+
+	const removePoint = useCallback(
+		(index) => {
+			setAttributes((prev) => {
+				const points = [...prev.points];
+				points.splice(index, 1);
+				return { points };
+			});
+		},
+		[setAttributes],
+	);
 
 	return (
 		<div {...blockProps}>
 			<InspectorBlock attributes={attributes} setAttributes={setAttributes} />
-			{attributes.orientation === "horizontal" ? (
+			{orientation === "horizontal" ? (
 				<HorizontalTimeline
 					attributes={attributes}
 					updatePoint={updatePoint}
 					removePoint={removePoint}
-					AddPoint={AddPoint}
+					addPoint={addPoint}
 				/>
 			) : (
 				<VerticalTimeline
 					attributes={attributes}
 					updatePoint={updatePoint}
 					removePoint={removePoint}
-					AddPoint={AddPoint}
+					addPoint={addPoint}
 				/>
 			)}
 		</div>
