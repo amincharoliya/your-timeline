@@ -4,14 +4,14 @@ import { InspectorControls } from "@wordpress/block-editor";
 
 import {
 	PanelBody,
-	TextControl,
 	SelectControl,
 	ColorPalette,
-	ToggleControl,
 	TabPanel,
 	__experimentalToggleGroupControl as ToggleGroupControl,
 	__experimentalToggleGroupControlOption as ToggleGroupControlOption,
 } from "@wordpress/components";
+
+import ResetButton from "./components/ResetButton";
 
 export const InspectorBlock = ({ attributes, setAttributes }) => (
 	<InspectorControls>
@@ -98,7 +98,11 @@ export const InspectorBlock = ({ attributes, setAttributes }) => (
 								{__("Timeline Label", "my-block")}
 							</h2>
 							<div className="your-block-color-palette-wrap">
-								<p>Color</p>
+								<span>Color</span>
+								<ResetButton
+									attribute="TimelineLabelColor"
+									setAttributes={setAttributes}
+								/>
 								<ColorPalette
 									className="your-block-color-palette"
 									value={attributes.TimelineLabelColor}
@@ -112,7 +116,11 @@ export const InspectorBlock = ({ attributes, setAttributes }) => (
 								{__("Heading", "my-block")}
 							</h2>
 							<div className="your-block-color-palette-wrap">
-								<p>Color</p>
+								<span>Color</span>
+								<ResetButton
+									attribute="headingColor"
+									setAttributes={setAttributes}
+								/>
 								<ColorPalette
 									className="your-block-color-palette"
 									value={attributes.headingColor}
@@ -126,7 +134,11 @@ export const InspectorBlock = ({ attributes, setAttributes }) => (
 								{__("Description", "my-block")}
 							</h2>
 							<div className="your-block-color-palette-wrap">
-								<p>Color</p>
+								<span>Color</span>
+								<ResetButton
+									attribute="DescriptionColor"
+									setAttributes={setAttributes}
+								/>
 								<ColorPalette
 									className="your-block-color-palette"
 									value={attributes.DescriptionColor}

@@ -171,6 +171,10 @@
   justify-content: space-between;
   align-items: center;
 }
+.your-block-color-palette-wrap .your-block-reset {
+  margin-right: auto;
+  text-decoration: none;
+}
 
 .your-block-color-palette .components-color-palette__custom-color-button {
   height: 24px !important;

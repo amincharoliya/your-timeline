@@ -10,6 +10,11 @@
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+
+	.your-block-reset {
+		margin-right: auto;
+		text-decoration: none;
+	}
 }
 
 .your-block-color-palette {
