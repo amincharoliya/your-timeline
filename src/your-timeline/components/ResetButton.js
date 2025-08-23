@@ -1,29 +1,23 @@
 // components/ResetButton.js
 import { __ } from "@wordpress/i18n";
 import { Button } from "@wordpress/components";
-import metadata from "../block.json";
+import { useCallback } from "@wordpress/element";
 
-const ResetButton = ({ attribute, setAttributes, label = "Reset" }) => {
-	const defaults = metadata.attributes;
-
-	const handleReset = () => {
-		if (!defaults[attribute]) return;
-
-		// Reset by falling back to default value
-		setAttributes({
-			[attribute]: defaults[attribute].default ?? undefined,
-		});
-	};
+const ResetButton = ({ attribute, setAttributes, defaultAttributes }) => {
+	const handleReset = useCallback(() => {
+		const defaultValue = defaultAttributes?.[attribute]?.default ?? "";
+		setAttributes({ [attribute]: defaultValue });
+	}, [attribute, setAttributes, defaultAttributes]);
 
 	return (
 		<Button
 			label={__("Reset", "my-block")}
-			showTooltip={true}
+			showTooltip
 			className="your-block-reset"
 			variant="link"
 			onClick={handleReset}
 			icon="image-rotate"
-			iconSize={16}
+			iconSize={14}
 		/>
 	);
 };

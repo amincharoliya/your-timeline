@@ -173,7 +173,10 @@
 }
 .your-block-color-palette-wrap .your-block-reset {
   margin-right: auto;
+  margin-left: 6px;
   text-decoration: none;
+  padding: 0;
+  min-width: auto;
 }
 
 .your-block-color-palette .components-color-palette__custom-color-button {

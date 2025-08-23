@@ -229,140 +229,158 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _components_ResetButton__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/ResetButton */ "./src/your-timeline/components/ResetButton.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./block.json */ "./src/your-timeline/block.json");
+/* harmony import */ var _components_ResetButton__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/ResetButton */ "./src/your-timeline/components/ResetButton.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__);
 
 
 
 
 
+
+
+// Default attributes
+
+const defaultAttributes = _block_json__WEBPACK_IMPORTED_MODULE_4__.attributes;
+const ColorSetting = ({
+  label,
+  attribute,
+  attributes,
+  setAttributes
+}) => {
+  const value = attributes[attribute];
+  const defaultValue = defaultAttributes?.[attribute]?.default;
+  const handleChange = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.useCallback)(newColor => setAttributes({
+    [attribute]: newColor
+  }), [setAttributes, attribute]);
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+    className: "your-block-color-palette-wrap",
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("label", {
+      children: label
+    }), defaultValue !== value && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_components_ResetButton__WEBPACK_IMPORTED_MODULE_5__["default"], {
+      attribute: attribute,
+      setAttributes: setAttributes,
+      defaultAttributes: defaultAttributes
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ColorPalette, {
+      className: "your-block-color-palette",
+      value: value !== null && value !== void 0 ? value : defaultValue,
+      onChange: handleChange
+    })]
+  });
+};
 const InspectorBlock = ({
   attributes,
   setAttributes
-}) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InspectorControls, {
-  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TabPanel, {
-    className: "my-block-tabs",
-    activeClass: "active-tab",
-    tabs: [{
-      name: "timeline-settings",
-      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("General", "my-block"),
-      className: "tab-timeline-settings"
-    }, {
-      name: "style",
-      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Style", "my-block"),
-      className: "tab-style"
-    }, {
-      name: "advanced",
-      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Advanced", "my-block"),
-      className: "tab-advanced"
-    }],
-    children: tab => {
-      if (tab.name === "timeline-settings") {
-        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
-            label: "Orientation",
-            value: attributes.orientation,
-            onChange: newOrientation => setAttributes({
-              orientation: newOrientation
-            }),
-            options: [{
-              label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Vertical", "my-block"),
-              value: "vertical"
-            }, {
-              label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Horizontal", "my-block"),
-              value: "horizontal"
-            }]
-          }), attributes.orientation === "vertical" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.__experimentalToggleGroupControl, {
-            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Timeline Layout", "my-block"),
-            value: attributes.layout,
-            isBlock: true,
-            onChange: value => setAttributes({
-              layout: value
-            }),
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.__experimentalToggleGroupControlOption, {
-              value: "single",
-              label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Single Side", "my-block")
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.__experimentalToggleGroupControlOption, {
-              value: "alternate",
-              label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Alternating", "my-block")
+}) => {
+  const handleOrientationChange = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.useCallback)(newOrientation => setAttributes({
+    orientation: newOrientation
+  }), [setAttributes]);
+  const handleLayoutChange = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.useCallback)(value => setAttributes({
+    layout: value
+  }), [setAttributes]);
+  const handleLayoutSideChange = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.useCallback)(value => setAttributes({
+    layoutSide: value
+  }), [setAttributes]);
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InspectorControls, {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TabPanel, {
+      className: "my-block-tabs",
+      activeClass: "active-tab",
+      tabs: [{
+        name: "timeline-settings",
+        title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("General", "my-block")
+      }, {
+        name: "style",
+        title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Style", "my-block")
+      }, {
+        name: "advanced",
+        title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Advanced", "my-block")
+      }],
+      children: tab => {
+        if (tab.name === "timeline-settings") {
+          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
+            title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Timeline Settings", "my-block"),
+            initialOpen: true,
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
+              label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Orientation", "my-block"),
+              value: attributes.orientation,
+              onChange: handleOrientationChange,
+              options: [{
+                label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Vertical", "my-block"),
+                value: "vertical"
+              }, {
+                label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Horizontal", "my-block"),
+                value: "horizontal"
+              }]
+            }), attributes.orientation === "vertical" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.__experimentalToggleGroupControl, {
+              label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Timeline Layout", "my-block"),
+              value: attributes.layout,
+              isBlock: true,
+              onChange: handleLayoutChange,
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.__experimentalToggleGroupControlOption, {
+                value: "single",
+                label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Single Side", "my-block")
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.__experimentalToggleGroupControlOption, {
+                value: "alternate",
+                label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Alternating", "my-block")
+              })]
+            }), attributes.layout === "single" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.__experimentalToggleGroupControl, {
+              label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Timeline Layout Side", "my-block"),
+              value: attributes.layoutSide,
+              isBlock: true,
+              onChange: handleLayoutSideChange,
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.__experimentalToggleGroupControlOption, {
+                value: "left",
+                label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Left", "my-block")
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.__experimentalToggleGroupControlOption, {
+                value: "right",
+                label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Right", "my-block")
+              })]
             })]
-          }), attributes.layout === "single" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.__experimentalToggleGroupControl, {
-            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Timeline Layout Side", "my-block"),
-            value: attributes.layoutSide,
-            isBlock: true,
-            onChange: value => setAttributes({
-              layoutSide: value
-            }),
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.__experimentalToggleGroupControlOption, {
-              value: "left",
-              label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Left Side", "my-block")
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.__experimentalToggleGroupControlOption, {
-              value: "right",
-              label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Right Side", "my-block")
-            })]
-          })]
-        });
-      }
-      if (tab.name === "style") {
-        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h2", {
-            className: "yourtimeline-block-settings-heading",
-            children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Timeline Label", "my-block")
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-            className: "your-block-color-palette-wrap",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
-              children: "Color"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_components_ResetButton__WEBPACK_IMPORTED_MODULE_3__["default"], {
+          });
+        }
+        if (tab.name === "style") {
+          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
+            title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Style Settings", "my-block"),
+            initialOpen: true,
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h2", {
+              className: "yourtimeline-block-settings-heading",
+              children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Timeline Label", "my-block")
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(ColorSetting, {
+              label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Color", "my-block"),
               attribute: "TimelineLabelColor",
+              attributes: attributes,
               setAttributes: setAttributes
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ColorPalette, {
-              className: "your-block-color-palette",
-              value: attributes.TimelineLabelColor,
-              onChange: newColor => setAttributes({
-                TimelineLabelColor: newColor
-              })
-            })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h2", {
-            className: "yourtimeline-block-settings-heading",
-            children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Heading", "my-block")
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-            className: "your-block-color-palette-wrap",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
-              children: "Color"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_components_ResetButton__WEBPACK_IMPORTED_MODULE_3__["default"], {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h2", {
+              className: "yourtimeline-block-settings-heading",
+              children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Heading", "my-block")
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(ColorSetting, {
+              label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Color", "my-block"),
               attribute: "headingColor",
+              attributes: attributes,
               setAttributes: setAttributes
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ColorPalette, {
-              className: "your-block-color-palette",
-              value: attributes.headingColor,
-              onChange: newColor => setAttributes({
-                headingColor: newColor
-              })
-            })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h2", {
-            className: "yourtimeline-block-settings-heading",
-            children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Description", "my-block")
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-            className: "your-block-color-palette-wrap",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
-              children: "Color"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_components_ResetButton__WEBPACK_IMPORTED_MODULE_3__["default"], {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h2", {
+              className: "yourtimeline-block-settings-heading",
+              children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Description", "my-block")
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(ColorSetting, {
+              label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Color", "my-block"),
               attribute: "DescriptionColor",
+              attributes: attributes,
               setAttributes: setAttributes
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ColorPalette, {
-              className: "your-block-color-palette",
-              value: attributes.DescriptionColor,
-              onChange: newColor => setAttributes({
-                DescriptionColor: newColor
-              })
             })]
-          })]
-        });
+          });
+        }
+        if (tab.name === "advanced") {
+          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
+            children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Advanced settings coming soon", "my-block")
+          });
+        }
       }
-    }
-  })
-});
+    })
+  });
+};
 
 /***/ }),
 
@@ -538,7 +556,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../block.json */ "./src/your-timeline/block.json");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__);
 // components/ResetButton.js
@@ -549,18 +568,15 @@ __webpack_require__.r(__webpack_exports__);
 const ResetButton = ({
   attribute,
   setAttributes,
-  label = "Reset"
+  defaultAttributes
 }) => {
-  const defaults = _block_json__WEBPACK_IMPORTED_MODULE_2__.attributes;
-  const handleReset = () => {
-    var _defaults$attribute$d;
-    if (!defaults[attribute]) return;
-
-    // Reset by falling back to default value
+  const handleReset = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.useCallback)(() => {
+    var _defaultAttributes$at;
+    const defaultValue = (_defaultAttributes$at = defaultAttributes?.[attribute]?.default) !== null && _defaultAttributes$at !== void 0 ? _defaultAttributes$at : "";
     setAttributes({
-      [attribute]: (_defaults$attribute$d = defaults[attribute].default) !== null && _defaults$attribute$d !== void 0 ? _defaults$attribute$d : undefined
+      [attribute]: defaultValue
     });
-  };
+  }, [attribute, setAttributes, defaultAttributes]);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Button, {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Reset", "my-block"),
     showTooltip: true,
@@ -568,7 +584,7 @@ const ResetButton = ({
     variant: "link",
     onClick: handleReset,
     icon: "image-rotate",
-    iconSize: 16
+    iconSize: 14
   });
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ResetButton);
