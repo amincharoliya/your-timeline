@@ -1,24 +1,60 @@
 /**
- * React hook that is used to mark the block wrapper element.
- * It provides all the necessary props like the class name.
+ * Save function for Timeline Block
  *
- * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockprops
+ * Renders the timeline on the frontend based on user-selected orientation
+ * and layout. Supports vertical and horizontal slider layouts.
  */
-import { useBlockProps } from "@wordpress/block-editor";
 
-/**
- * The save function defines the way in which the different attributes should
- * be combined into the final markup, which is then serialized by the block
- * editor into `post_content`.
- *
- * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-edit-save/#save
- *
- * @return {Element} Element to render.
- */
+import { useBlockProps, RichText } from "@wordpress/block-editor";
+
 export default function save({ attributes }) {
+	const {
+		TimelineLabelColor,
+		headingColor,
+		DescriptionColor,
+		points,
+		orientation,
+		layout,
+		layoutSide,
+	} = attributes;
+
+	const blockProps = useBlockProps.save({
+		style: {
+			"--your-timeline-primary-color": TimelineLabelColor,
+			"--your-timeline-heading-color": headingColor,
+			"--your-timeline-description-color": DescriptionColor,
+		},
+		className: `your-timeline-block ${orientation}-layout ${
+			orientation === "vertical" ? `layout-side-${layoutSide}` : ""
+		} ${
+			orientation === "horizontal" && layout === "slider" ? "slider-layout" : ""
+		}`,
+	});
+
 	return (
-		<p {...useBlockProps.save()}>
-			{"Your Timeline – hello from the saved content!"}
-		</p>
+		<div {...blockProps}>
+			<div
+				className={`your-timeline-block__list ${
+					points.length ? "has-points" : ""
+				}`}
+			>
+				{points.map((point, index) => (
+					<div className="your-timeline-block__item" key={index}>
+						<div className="your-timeline-block__date">
+							<RichText.Content tagName="p" value={point.date} />
+						</div>
+						<div className="your-timeline-block__icon"></div>
+						<div className="your-timeline-block__content">
+							<div className="your-timeline-block__title">
+								<RichText.Content tagName="h2" value={point.title} />
+							</div>
+							<div className="your-timeline-block__description">
+								<RichText.Content tagName="div" value={point.description} />
+							</div>
+						</div>
+					</div>
+				))}
+			</div>
+		</div>
 	);
 }
