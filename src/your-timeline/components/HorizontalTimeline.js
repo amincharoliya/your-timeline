@@ -7,7 +7,7 @@
  * @param {Object} props.attributes - Block attributes
  * @param {Function} props.updatePoint - Function to update a timeline point
  * @param {Function} props.removePoint - Function to remove a timeline point
- * @param {Function} props.AddPoint - Function to add a new timeline point
+ * @param {Function} props.addPoint - Function to add a new timeline point
  *
  * @returns {JSX.Element} Horizontal timeline component with slider
  */
@@ -21,7 +21,7 @@ const HorizontalTimeline = ({
 	attributes,
 	updatePoint,
 	removePoint,
-	AddPoint,
+	addPoint,
 }) => {
 	const [currentSlide, setCurrentSlide] = useState(0);
 	const sliderRef = useRef(null);
@@ -74,7 +74,7 @@ const HorizontalTimeline = ({
 						variant="primary"
 						icon="plus"
 						iconSize={14}
-						onClick={() => AddPoint()}
+						onClick={() => addPoint()}
 						text="Add Point"
 					/>
 				</div>
@@ -214,7 +214,7 @@ const HorizontalTimeline = ({
 					variant="primary"
 					icon="plus"
 					iconSize={14}
-					onClick={() => AddPoint()}
+					onClick={() => addPoint()}
 					text="Add Point"
 				/>
 			</div>

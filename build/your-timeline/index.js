@@ -247,7 +247,7 @@ __webpack_require__.r(__webpack_exports__);
  * @param {Object} props.attributes - Block attributes
  * @param {Function} props.updatePoint - Function to update a timeline point
  * @param {Function} props.removePoint - Function to remove a timeline point
- * @param {Function} props.AddPoint - Function to add a new timeline point
+ * @param {Function} props.addPoint - Function to add a new timeline point
  *
  * @returns {JSX.Element} Horizontal timeline component with slider
  */
@@ -261,7 +261,7 @@ const HorizontalTimeline = ({
   attributes,
   updatePoint,
   removePoint,
-  AddPoint
+  addPoint
 }) => {
   const [currentSlide, setCurrentSlide] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.useState)(0);
   const sliderRef = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.useRef)(null);
@@ -309,7 +309,7 @@ const HorizontalTimeline = ({
           variant: "primary",
           icon: "plus",
           iconSize: 14,
-          onClick: () => AddPoint(),
+          onClick: () => addPoint(),
           text: "Add Point"
         })]
       })
@@ -422,7 +422,7 @@ const HorizontalTimeline = ({
         variant: "primary",
         icon: "plus",
         iconSize: 14,
-        onClick: () => AddPoint(),
+        onClick: () => addPoint(),
         text: "Add Point"
       })]
     })]
@@ -524,7 +524,7 @@ __webpack_require__.r(__webpack_exports__);
  * @param {Object} props.attributes - Block attributes
  * @param {Function} props.updatePoint - Function to update a timeline point
  * @param {Function} props.removePoint - Function to remove a timeline point
- * @param {Function} props.AddPoint - Function to add a new timeline point
+ * @param {Function} props.addPoint - Function to add a new timeline point
  *
  * @returns {JSX.Element} Vertical timeline component
  */
@@ -537,7 +537,7 @@ const VerticalTimeline = ({
   attributes,
   updatePoint,
   removePoint,
-  AddPoint
+  addPoint
 }) => {
   const LayoutSideOption = attributes.layoutSide === "left" ? "layout-side-left" : "layout-side-right";
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
@@ -599,7 +599,7 @@ const VerticalTimeline = ({
       variant: "primary",
       icon: "plus",
       iconSize: 14,
-      onClick: () => AddPoint(),
+      onClick: () => addPoint(),
       text: "Add Point"
     })]
   });
@@ -652,33 +652,29 @@ function Edit({
       "--your-timeline-description-color": DescriptionColor
     }
   });
-  const addPoint = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useCallback)(() => {
-    setAttributes(prev => ({
-      points: [...prev.points, {
+  const addPoint = () => {
+    setAttributes({
+      points: [...attributes.points, {
         date: "",
         title: "",
         description: ""
       }]
-    }));
-  }, [setAttributes]);
-  const updatePoint = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useCallback)((index, newPoint) => {
-    setAttributes(prev => {
-      const points = [...prev.points];
-      points[index] = newPoint;
-      return {
-        points
-      };
     });
-  }, [setAttributes]);
-  const removePoint = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useCallback)(index => {
-    setAttributes(prev => {
-      const points = [...prev.points];
-      points.splice(index, 1);
-      return {
-        points
-      };
+  };
+  const updatePoint = (index, newPoint) => {
+    const points = [...attributes.points];
+    points[index] = newPoint;
+    setAttributes({
+      points
     });
-  }, [setAttributes]);
+  };
+  const removePoint = index => {
+    const newPoints = [...attributes.points];
+    newPoints.splice(index, 1);
+    setAttributes({
+      points: newPoints
+    });
+  };
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
     ...blockProps,
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_InspectorBlock__WEBPACK_IMPORTED_MODULE_3__.InspectorBlock, {

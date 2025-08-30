@@ -18,33 +18,23 @@ export default function Edit({ attributes, setAttributes }) {
 		},
 	});
 
-	const addPoint = useCallback(() => {
-		setAttributes((prev) => ({
-			points: [...prev.points, { date: "", title: "", description: "" }],
-		}));
-	}, [setAttributes]);
+	const addPoint = () => {
+		setAttributes({
+			points: [...attributes.points, { date: "", title: "", description: "" }],
+		});
+	};
 
-	const updatePoint = useCallback(
-		(index, newPoint) => {
-			setAttributes((prev) => {
-				const points = [...prev.points];
-				points[index] = newPoint;
-				return { points };
-			});
-		},
-		[setAttributes],
-	);
+	const updatePoint = (index, newPoint) => {
+		const points = [...attributes.points];
+		points[index] = newPoint;
+		setAttributes({ points });
+	};
 
-	const removePoint = useCallback(
-		(index) => {
-			setAttributes((prev) => {
-				const points = [...prev.points];
-				points.splice(index, 1);
-				return { points };
-			});
-		},
-		[setAttributes],
-	);
+	const removePoint = (index) => {
+		const newPoints = [...attributes.points];
+		newPoints.splice(index, 1);
+		setAttributes({ points: newPoints });
+	};
 
 	return (
 		<div {...blockProps}>
