@@ -64,7 +64,8 @@
 		}
 	},
 	"supports": {
-		"html": false
+		"html": false,
+		"align": ["wide", "full"]
 	},
 	"textdomain": "your-timeline",
 	"editorScript": "file:./index.js",

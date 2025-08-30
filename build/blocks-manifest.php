@@ -69,7 +69,11 @@ return array(
 			)
 		),
 		'supports' => array(
-			'html' => false
+			'html' => false,
+			'align' => array(
+				'wide',
+				'full'
+			)
 		),
 		'textdomain' => 'your-timeline',
 		'editorScript' => 'file:./index.js',
